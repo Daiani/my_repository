@@ -1,16 +1,28 @@
 Rainforest::Application.routes.draw do
-root 'products#index'
 
-resources :products
+  root 'product#index'
 
-resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :products do
+  resources :sessions, only: [:show, :create, :destroy]
 
-resources :sessions, only: [:new, :create, :destroy]
+  delete 'product/:id' => 'product#destroy', as: "delete_product"
+  end
+ end
 
-end
+
   # get 'users/new'
 
   # get 'users/create'
+
+
+  # get 'reviews/show'
+
+  # get 'reviews/create'
+
+  # get 'reviews/destroy'
+
 
   
 
@@ -22,6 +34,9 @@ end
   # get 'products/new'
 
   # get 'products/edit'
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

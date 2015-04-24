@@ -10,22 +10,33 @@
 	<% if flash[:notice] %>
 	<p id="notice"><%= flash[:notice] %></p>
 	<% end %>
+
 	<% if flash[:alert] %>
 	<p id="alert"><%= flash[:alert] %></p>
 	<% end %>
 
 	<%= yield %>
+	
+	<img src="http://i.dailymail.co.uk/i/pix/2013/11/22/article-0-0F43B5DB00000578-200_634x476.jpg" alt="pic" /> 
 
 	<p class="userinfo">
 		<% if current_user %>
-		   Signed in as <%= current_user.email %>. <%= link_to "Log out", session_path("current"), :method => :delete %>
+		   Signed in as <%= current_user.name%>. <%= link_to "Log out", session_path("current"), :method => :delete %>
 		   <% else %>
-		   <% link_to "Log in", new_session_path %> or <%= link_to "Sign up", new_user_path %>
+		   <% link_to "Log in", new_session_path %>  <%= link_to "Sign up", new_user_path %>
 
 		   <% end %>
+
+			<p><%= link_to "Add new product", new_product_path %><p/>
+
+		
+      <%= link_to "Delete", @product, method: :delete, data: {confirm: "Are you sure you want to delete this product?"}  %>
+
 		 </p>
 		</body>
 		</html>
 
 </body>
 </html>
+
+
